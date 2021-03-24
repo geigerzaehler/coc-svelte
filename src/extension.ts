@@ -8,6 +8,7 @@ import {
     RevealOutputChannelOn,
     Uri,
     commands,
+    window,
 } from 'coc.nvim';
 import path from "path";
 import { TextDocument, Position, TextDocumentPositionParams } from 'vscode-languageserver-protocol';
@@ -82,7 +83,7 @@ export function activate(context: ExtensionContext) {
             'html.autoClosingTags',
         );
         context.subscriptions.push(disposable);
-        workspace.showMessage('Svelte language server now active.');
+        window.showMessage('Svelte language server now active.');
     });
 
     context.subscriptions.push(
@@ -91,7 +92,7 @@ export function activate(context: ExtensionContext) {
             ls = createLanguageServer(serverOptions, clientOptions);
             context.subscriptions.push(ls.start());
             await ls.onReady();
-            workspace.showMessage('Svelte language server restarted.');
+            window.showMessage('Svelte language server restarted.');
         }),
     );
 }
